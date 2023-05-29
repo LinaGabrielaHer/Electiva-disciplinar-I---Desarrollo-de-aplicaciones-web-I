@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Actividad 3 - Taller JavaScript/Jquery HTML5</title>
+  <style>
+    /* Estilos previos... */
+  </style>
+  <script src="jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Ocultar el contenido de todos los artículos al cargar la página
+      $('article').find('p').hide();
+
+      // Agregar un botón a cada artículo para mostrar/ocultar su contenido
+      $('article').each(function() {
+        var $article = $(this);
+        var $button = $('<button>Mostrar contenido</button>');
+
+        $button.click(function() {
+          var $content = $article.find('p');
+          if ($content.is(':visible')) {
+            $content.hide();
+            $button.text('Mostrar contenido');
+          } else {
+            $content.show();
+            $button.text('Ocultar contenido');
+          }
+        });
+
+        $article.append($button);
+      });
+
+      // Validar el formulario utilizando JavaScript
+      function validarFormulario() {
+        var nombre = document.getElementById('nombre').value;
+        var email = document.getElementById('email').value;
+
+        if (nombre === '' || email === '') {
+          alert('Por favor, complete todos los campos.');
+          return false;
+        }
+
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Por favor, ingrese un correo electrónico válido.');
+          return false;
+        }
+
+        alert('Formulario enviado correctamente.');
+        return true;
+      }
+
+      // Asignar el evento de validación al enviar el formulario
+      $('form').submit(function(event) {
+        event.preventDefault();
+        validarFormulario();
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Título del sitio web</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Acerca de</a></li>
+      <li><a href="#">Servicios</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <article>
+      <h2>Artículo 1</h2>
+      <p>Contenido del artículo 1...</p>
+    </article>
+
+    <article>
+      <h2>Artículo 2</h2>
+      <p>Contenido del artículo 2...</p>
+    </article>
+
+    <aside>
+      <h3>Información adicional</h3>
+      <p>Contenido del aside...</p>
+    </aside>
+
+    <form>
+      <h2>Formulario de contacto</h2>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required><br><br>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" required><br><br>
+
+      <input type="submit" value="Enviar">
+    </form>
+  </main>
+
+  <footer>
+    <p>Derechos de autor: Lina Hernandez &copy; 2023 - Sitio web</p>
+  </footer>
+</body>
+</html>
